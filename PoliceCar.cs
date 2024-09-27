@@ -5,7 +5,6 @@
         //constant string as TypeOfVehicle wont change allong PoliceCar instances
         private const string typeOfVehicle = "Police Car"; 
         private bool isPatrolling;
-public float speed = 0f;
         private SpeedRadar speedRadar;
 
         public PoliceCar(string plate) : base(typeOfVehicle, plate)
