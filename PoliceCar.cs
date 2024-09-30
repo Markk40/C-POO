@@ -6,11 +6,14 @@
         private const string typeOfVehicle = "Police Car"; 
         private bool isPatrolling;
         private SpeedRadar speedRadar;
+        private bool isChasing;
+        private Vehicle chasedVehicle;
 
         public PoliceCar(string plate) : base(typeOfVehicle, plate)
         {
             isPatrolling = false;
             speedRadar = new SpeedRadar();
+            isChasing = false;
         }
 
         public void UseRadar(Vehicle vehicle)
@@ -65,6 +68,12 @@
             {
                 Console.WriteLine(speed);
             }
+        }
+
+        public void SetChasedVehicle(Vehicle vehicle)
+        {
+            chasedVehicle = vehicle;
+            isChasing = true;
         }
     }
 }
