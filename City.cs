@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace Practice1
 {
-    internal class City
+    internal class City:IMessageWritter
     {
         private List<Taxi> taxiLicenses;
         private PoliceStation policeStation;
+        private string cityName;
 
-        public City()
+        public City(string name)
         {
             taxiLicenses = new List<Taxi>();
             policeStation = new PoliceStation();
+            cityName = name;
         }
 
         public List<Taxi> GetTaxiLicenses()
@@ -29,6 +31,16 @@ namespace Practice1
         public void RemoveTaxi(Taxi taxi)
         {
             taxiLicenses.Remove(taxi);
+        }
+
+        public override string ToString()
+        {
+            return "City " + cityName;
+        }
+
+        public string WriteMessage(string message)
+        {
+            return $"{this}: {message}";
         }
     }
 }
