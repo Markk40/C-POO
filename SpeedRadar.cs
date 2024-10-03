@@ -17,7 +17,12 @@
 
         public void TriggerRadar(Vehicle vehicle)
         {
-            plate = vehicle.GetPlate();
+            if (vehicle is PlateVehicle)
+            {
+                plate = vehicle.GetPlate();
+            }
+            else { plate = ""; }
+
             speed = vehicle.GetSpeed();
             SpeedHistory.Add(speed);
         }
