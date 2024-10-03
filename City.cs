@@ -12,10 +12,10 @@ namespace Practice1
         private PoliceStation policeStation;
         private string cityName;
 
-        public City(string name)
+        public City(string name, PoliceStation station)
         {
             taxiLicenses = new List<Taxi>();
-            policeStation = new PoliceStation();
+            policeStation = station;
             cityName = name;
         }
 
