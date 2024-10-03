@@ -38,7 +38,7 @@ namespace Practice1
             return "City " + cityName;
         }
 
-        public string WriteMessage(string message)
+        public virtual string WriteMessage(string message)
         {
             return $"{this}: {message}";
         }
