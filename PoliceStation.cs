@@ -23,12 +23,6 @@ namespace Practice1
         {
             registeredCars.Add(car);
         }
-
-        //public List<Vehicle> GetChasedVehicles()
-        //{
-
-        //}
-
         private void NotifyPoliceCars(string plate)
         {
             foreach (PoliceCar car in registeredCars)
