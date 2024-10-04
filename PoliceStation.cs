@@ -33,7 +33,10 @@ namespace Practice1
         {
             foreach (PoliceCar car in registeredCars)
             {
-                car.SetChasedVehicle(plate);
+                if (car.IsPatrolling())
+                {
+                    car.SetChasedVehicle(plate);
+                }
             }
         }
 
