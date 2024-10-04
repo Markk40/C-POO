@@ -6,6 +6,7 @@
         private string plate;
         private float speed;
         private float legalSpeed = 50.0f;
+        private bool infraction;
         public List<float> SpeedHistory { get; private set; }
 
         public SpeedRadar()
@@ -13,6 +14,7 @@
             plate = "";
             speed = 0f;
             SpeedHistory = new List<float>();
+            infraction = false;
         }
 
         public void TriggerRadar(Vehicle vehicle)
@@ -28,11 +30,12 @@
 
             speed = vehicle.GetSpeed();
             SpeedHistory.Add(speed);
+            infraction = speed > legalSpeed;
         }
         
         public string GetLastReading()
         {
-            if (speed > legalSpeed)
+            if (infraction)
             {
                 return WriteMessage("Catched above legal speed.");
             }
@@ -42,9 +45,15 @@
             }
         }
 
+        public bool GetInfracion()
+        { 
+            return infraction; 
+        }
+
         public virtual string WriteMessage(string radarReading)
         {
             return $"Vehicle with plate {plate} at {speed.ToString()} km/h. {radarReading}";
         }
+
     }
 }

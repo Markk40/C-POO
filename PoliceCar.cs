@@ -10,8 +10,10 @@ namespace Practice1
         private SpeedRadar? speedRadar;
         private bool isChasing;
         private string chasedVehiclePlate;
+        private PoliceStation station;
 
-        public PoliceCar(string plate, bool hasRadar) : base(typeOfVehicle, plate)
+
+        public PoliceCar(string plate, bool hasRadar, PoliceStation station) : base(typeOfVehicle, plate)
         {
             isPatrolling = false;
             if (hasRadar)
@@ -24,6 +26,7 @@ namespace Practice1
             }
             isChasing = false;
             chasedVehiclePlate = "";
+            this.station = station;
         }
 
         public void UseRadar(Vehicle vehicle)
@@ -35,6 +38,13 @@ namespace Practice1
                     speedRadar.TriggerRadar(vehicle);
                     string meassurement = speedRadar.GetLastReading();
                     Console.WriteLine(WriteMessage($"Triggered radar. Result: {meassurement}"));
+                    if (speedRadar.GetInfracion())
+                    {
+                        if (vehicle is PlateVehicle plateVehicle)
+                        {
+                            this.AlertStation(plateVehicle.GetPlate());
+                        }
+                    }
                 }
                 else
                 {
@@ -93,11 +103,19 @@ namespace Practice1
                 }
             }
         }
-
+        private void AlertStation(string plate)
+        {
+            station.ActivateAlarm(plate);
+        }
         public void SetChasedVehicle(string plate)
         {
-            chasedVehiclePlate = plate;
-            isChasing = true;
+            if (!isChasing)
+            {
+                chasedVehiclePlate = plate;
+                isChasing = true;
+                Console.WriteLine($"{this}: Started chasing vehicle with plate {plate}");
+            }
+
         }
     }
 }

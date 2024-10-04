@@ -40,6 +40,7 @@ namespace Practice1
         public void ActivateAlarm(string plate)
         {
             alarm = true;
+            Console.WriteLine(WriteMessage($"Alarm activated. Alerting to chase vehicle with plate {plate}"));
             NotifyPoliceCars(plate);
         }
 
